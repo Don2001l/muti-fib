@@ -1,0 +1,28 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t don2001l/docker-fib -f ./postgres/Dockerfile.dev .
+  - docker build -t don2001l/docker-fib -f ./redis/Dockerfile.dev .
+  - docker build -t don2001l/docker-fib -f ./client/Dockerfile.dev ./client
+  - docker build -t don2001l/docker-fib -f ./server/Dockerfile.dev ./server
+  - docker build -t don2001l/docker-fib -f ./worker/Dockerfile.dev ./worker
+  - docker build -t don2001l/docker-fib -f ./nginx/Dockerfile.dev ./nginx
+
+script:
+  - docker run -e CI=true don2001l/docker-fib npm run test -- --coverage
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "Docker_Fib"
+  env: "DockerFib-env" 
+  bucket_name: elasticbeanstalk-us-east-2-693759577295
+  bucket_path: "Docker_Fib"
+  on: 
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"

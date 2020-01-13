@@ -1,0 +1,38 @@
+version: "3"
+services:
+  postgres:
+    image: 'portgres:latest'
+  redis: 
+    image: 'redis:latest'
+  server:
+    image:
+    restart: on-failure
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+    - /app/docker/project-fibonaci/client/node_modules
+    - ./server:/app
+    ports:
+    - "8080:3000"
+  tests:
+  worker:
+    image:
+  client:
+    restart: on-failure
+    build:
+      context: ./client
+      dockerfile: ./client/Dockerfile.dev
+    ports:
+    - "8080:3000"
+    volumes:
+    - /app/docker/project-fibonaci/client/node_modules
+    - .client/src:/app/src
+  tests:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile.dev
+    volumes:
+    - ./client/src:/app/src
+    - /app/docker/project-fibonaci/client/node_modules
+    command: ["npm", "run", "test"]

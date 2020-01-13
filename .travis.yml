@@ -1,0 +1,25 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t don2001l/docker-fib -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true don2001l/docker-fib npm run test -- --coverage
+
+after_success
+  - docker build -t don2001l/docker-fib-client ./client
+  - docker build -t don2001l/docker-fib-nginx  ./nginx
+  - docker build -t don2001l/docker-fib-server ./server
+  - docker build -t don2001l/docker-fib-worker ./worker
+
+# Login to Docker HUB
+- echo "$DOCKER_AUTH" | docker login -u "$DOCKER_ID" --passwd-stdin
+# push to Docker HUB 
+
+- docker push don2001l/docker-fib-client
+- docker push don2001l/docker-fib-nginx 
+- docker push don2001l/docker-fib-server
+- docker push don2001l/docker-fib-worker 
