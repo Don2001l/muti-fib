@@ -19,7 +19,7 @@ after_success:
   - echo "$DOCKER_AUTH" | docker login -u "$DOCKER_ID" --passwd-stdin
 
 # push to Docker HUB 
-  - docker push don2001l/docker-kubernetes:docker-fib-client
-  - docker push don2001l/docker-kubernetes:docker-fib-nginx
-  - docker push don2001l/docker-kubernetes:docker-fib-server
-  - docker push don2001l/docker-kubernetes:docker-fib-worker
+  - docker push don2001l/docker-fib-client:docker-kubernetes
+  - docker push don2001l/docker-fib-nginx:docker-kubernetes
+  - docker push don2001l/docker-fib-server:docker-kubernetes
+  - docker push don2001l/docker-fib-worker:docker-kubernetes
