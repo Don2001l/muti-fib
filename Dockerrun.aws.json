@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
    {
-     "memoryReservation": 256,
+     "memory": 128,
      "cpu": 1,
      "name": "client",
      "image": "don2001l/docker-fib-client",
@@ -10,7 +10,7 @@
      "essential": false
    },
    {
-     "memoryReservation": 256,
+     "memory": 128,
      "cpu": 1,
      "name": "server",
      "image": "don2001l/docker-fib-server",
@@ -18,7 +18,7 @@
      "essential": false
    },
    {
-     "memoryReservation": 256,
+     "memory": 128,
      "cpu": 1,
      "name": "worker",
      "image": "don2001l/docker-fib-worker",
@@ -26,7 +26,7 @@
      "essential": false
    },
    {
-     "memoryReservation": 256,
+     "memory": 128,
      "cpu": 1,
      "name": "nginx",
      "image": "don2001l/docker-fib-nginx",
