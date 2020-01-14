@@ -16,7 +16,7 @@ after_success:
   - docker build -t don2001l/docker-fib-worker ./worker
 
 # Login to Docker HUB
-  - echo "$DOCKER_AUTH" | docker login -u "$DOCKER_ID" --passwd-stdin
+  - echo "$DOCKER_AUTH" | docker login -u "$DOCKER_ID" --password-stdin
 
 # push to Docker HUB 
   - docker push don2001l/docker-fib-client
