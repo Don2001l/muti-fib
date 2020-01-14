@@ -20,6 +20,6 @@ after_success:
 
 # push to Docker HUB 
   - docker push don2001l/docker-fib-client
-  - docker push don2001l/docker-fib-nginx
-  - docker push don2001l/docker-fib-server
-  - docker push don2001l/docker-fib-worker
+#  - docker push don2001l/docker-fib-nginx
+#  - docker push don2001l/docker-fib-server
+#  - docker push don2001l/docker-fib-worker
