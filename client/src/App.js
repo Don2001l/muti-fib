@@ -12,7 +12,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome HCL Fibonacci Calculator observers </h1>
+            <h1 className="App-title">Welcome to the Fibonacci Calculator</h1>
             <Link to="/">Home</Link>
             <Link to="/otherpage">Sample Page</Link>
           </header>
